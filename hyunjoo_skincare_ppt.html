@@ -455,30 +455,20 @@
     </div>
 
     <div class="img-col">
-      <!-- De:maf Here-Oh My First Serum 제품 표현 -->
-      <div style="flex:1; display:flex; align-items:center; justify-content:center; background:linear-gradient(145deg,#f0ede8 0%,#e8e4dc 100%); border-radius:8px; padding:12px; min-height:200px; position:relative; overflow:hidden;">
-        <!-- 배경 그림자 효과 -->
-        <div style="position:absolute;top:-30px;right:-20px;width:120px;height:200px;background:rgba(180,170,155,0.25);border-radius:50%;transform:rotate(20deg);"></div>
-        <!-- 제품 병 -->
-        <div style="display:flex; flex-direction:column; align-items:center; position:relative; z-index:2;">
-          <!-- 캡 -->
-          <div style="width:44px; height:24px; background:linear-gradient(180deg,#d8d4cc,#b8b4aa); border-radius:4px 4px 0 0; box-shadow:0 2px 6px rgba(0,0,0,0.15);"></div>
-          <!-- 펌프 헤드 -->
-          <div style="width:28px; height:32px; background:linear-gradient(180deg,#e8e4dc,#ccc8be); border-radius:3px; margin-top:-2px; box-shadow:0 2px 4px rgba(0,0,0,0.12);"></div>
-          <!-- 병 본체 -->
-          <div style="width:80px; min-height:130px; background:linear-gradient(160deg,rgba(255,255,255,0.85) 0%,rgba(230,228,222,0.90) 100%); border-radius:6px 6px 8px 8px; box-shadow:2px 4px 14px rgba(0,0,0,0.18), inset 1px 1px 4px rgba(255,255,255,0.6); display:flex; flex-direction:column; justify-content:flex-start; overflow:hidden; backdrop-filter:blur(2px);">
-            <!-- 노란 라벨 띠 -->
-            <div style="background:linear-gradient(135deg,#e8c832 0%,#f0d840 60%,#d4b828 100%); padding:7px 6px; text-align:center;">
-              <div style="font-size:7px; font-weight:800; color:#2a2010; letter-spacing:0.5px; line-height:1.3;">HERE-OH</div>
-              <div style="font-size:6px; font-weight:700; color:#2a2010; letter-spacing:0.3px; line-height:1.3;">MY FIRST SERUM</div>
-            </div>
-            <!-- 병 중간 -->
-            <div style="flex:1; padding:8px 6px 6px; display:flex; flex-direction:column; justify-content:flex-end;">
-              <div style="font-size:7.5px; font-weight:700; color:#3a3530; text-align:center; letter-spacing:0.8px;">De:maf</div>
-              <div style="font-size:5.5px; color:#6a6560; text-align:center; margin-top:2px;">145 mL</div>
-            </div>
-          </div>
-        </div>
+      <!--
+        ★ 사용 방법:
+           이 HTML 파일과 같은 폴더에
+           제품 사진을 "demaf_product.jpg" 이름으로 저장하면
+           아래 이미지가 자동으로 표시됩니다.
+      -->
+      <img src="demaf_product.jpg"
+           alt="De:maf Here-Oh My First Serum"
+           style="flex:1; width:100%; height:100%; object-fit:contain; border-radius:6px; background:#f5f2ee; min-height:200px;"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <!-- 이미지 없을 때 대체 표시 -->
+      <div style="display:none; flex:1; align-items:center; justify-content:center; background:linear-gradient(145deg,#f0ede8,#e8e4dc); border-radius:8px; flex-direction:column; gap:6px; color:#a09080; font-size:10px; text-align:center; min-height:200px; padding:12px; border:1.5px dashed #c8bfb0;">
+        <svg width="28" height="28" fill="none" stroke="#c8bfb0" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span><b>demaf_product.jpg</b> 파일을<br>HTML과 같은 폴더에 저장하세요</span>
       </div>
     </div>
   </div>

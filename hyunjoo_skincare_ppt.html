@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>나의 화장품 및 피부 관리 방법 - 이현주</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #f0ede8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 32px;
+  }
+
+  /* ── 공통 슬라이드 ── */
+  .slide {
+    width: 960px;
+    height: 540px;
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 슬라이드 번호 */
+  .slide-number {
+    position: absolute;
+    bottom: 18px;
+    right: 28px;
+    font-size: 11px;
+    color: #b8afc8;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── 상단 구분선 장식 ── */
+  .top-bar {
+    height: 5px;
+    background: linear-gradient(90deg, #c9b8e0 0%, #e8ddd0 60%, #f5f0ea 100%);
+    flex-shrink: 0;
+  }
+
+  /* ── 페이지 라벨 (섹션 이름) ── */
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #a98ec5;
+    text-transform: uppercase;
+  }
+
+  /* ── 키워드 태그 ── */
+  .keyword-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .keyword {
+    background: #f3eef9;
+    color: #7a5fa0;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── 이미지 힌트 박스 ── */
+  .img-hint {
+    background: #faf8f5;
+    border: 1px dashed #d4c9b8;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: #b0a090;
+    font-size: 11px;
+    text-align: center;
+    line-height: 1.5;
+    padding: 12px;
+  }
+  .img-hint svg { opacity: 0.5; }
+
+  /* ────────────────────────────────────
+     슬라이드 1 : 표지
+  ──────────────────────────────────── */
+  #s1 {
+    background: linear-gradient(135deg, #fdfcfb 0%, #f5f0ea 50%, #ede6f5 100%);
+  }
+  #s1 .cover-bg-circle {
+    position: absolute;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,184,224,0.18) 0%, transparent 70%);
+    top: -80px; right: -80px;
+  }
+  #s1 .cover-bg-circle2 {
+    position: absolute;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,221,208,0.25) 0%, transparent 70%);
+    bottom: -60px; left: 60px;
+  }
+  #s1 .cover-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 0 80px;
+  }
+  #s1 .cover-dept {
+    font-size: 12px;
+    font-weight: 500;
+    color: #a98ec5;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  #s1 .cover-title {
+    font-size: 34px;
+    font-weight: 700;
+    color: #2a2230;
+    line-height: 1.35;
+    margin-bottom: 12px;
+    word-break: keep-all;
+  }
+  #s1 .cover-subtitle {
+    font-size: 14px;
+    color: #7a6e88;
+    font-weight: 400;
+    margin-bottom: 40px;
+  }
+  #s1 .cover-line {
+    width: 56px; height: 2px;
+    background: linear-gradient(90deg, #c9b8e0, #e8ddd0);
+    margin: 0 auto 36px;
+  }
+  #s1 .cover-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  #s1 .cover-meta span {
+    font-size: 12px;
+    color: #8c7ea0;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+  #s1 .cover-img-area {
+    position: absolute;
+    right: 64px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 200px;
+    height: 260px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  /* ────────────────────────────────────
+     슬라이드 2~5 공통 본문 레이아웃
+  ──────────────────────────────────── */
+  .body-header {
+    padding: 28px 52px 0;
+  }
+  .body-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2a2230;
+    margin-top: 8px;
+    line-height: 1.3;
+  }
+  .title-underline {
+    width: 40px; height: 3px;
+    background: #c9b8e0;
+    margin-top: 10px;
+    border-radius: 2px;
+  }
+  .body-content {
+    flex: 1;
+    display: flex;
+    padding: 20px 52px 16px;
+    gap: 32px;
+    overflow: hidden;
+  }
+
+  /* 텍스트 영역 */
+  .text-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .sub-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #6d4f96;
+    letter-spacing: 0.3px;
+    border-left: 3px solid #c9b8e0;
+    padding-left: 10px;
+    line-height: 1.4;
+  }
+  .body-text {
+    font-size: 12.5px;
+    color: #4a4350;
+    line-height: 1.85;
+    font-weight: 400;
+    word-break: keep-all;
+  }
+
+  /* 이미지 영역 */
+  .img-col {
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .img-col .img-hint {
+    flex: 1;
+    min-height: 80px;
+  }
+
+  /* 키워드 하단 바 */
+  .keyword-bar {
+    background: #faf8f5;
+    border-top: 1px solid #ede6db;
+    padding: 10px 52px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .keyword-bar-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #a98ec5;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* 점 구분자 */
+  .dot-divider {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: #d4c8e0;
+    flex-shrink: 0;
+  }
+
+  /* ────────────────────────────────────
+     슬라이드 6 : 결론 + 참고문헌
+  ──────────────────────────────────── */
+  #s6 .two-col {
+    flex: 1;
+    display: flex;
+    gap: 0;
+    overflow: hidden;
+  }
+  #s6 .conclusion-col {
+    flex: 1;
+    padding: 20px 36px 16px 52px;
+    border-right: 1px solid #ede6db;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  #s6 .ref-col {
+    width: 320px;
+    padding: 20px 40px 16px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  #s6 .ref-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #a98ec5;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  #s6 .ref-item {
+    font-size: 10.5px;
+    color: #6a5f78;
+    line-height: 1.7;
+    padding-left: 14px;
+    position: relative;
+    word-break: keep-all;
+  }
+  #s6 .ref-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px;
+    width: 5px; height: 1px;
+    background: #b8a8cc;
+  }
+
+  /* ── 인쇄용 힌트 ── */
+  .print-note {
+    width: 960px;
+    font-size: 11px;
+    color: #9a8fa0;
+    text-align: center;
+    padding: 8px 0 4px;
+    letter-spacing: 0.3px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     슬라이드 1 : 표지
+══════════════════════════════════ -->
+<div class="slide" id="s1">
+  <div class="top-bar"></div>
+  <div class="cover-bg-circle"></div>
+  <div class="cover-bg-circle2"></div>
+
+  <div class="cover-inner">
+    <div class="cover-dept">뷰티아트산업학과 · 피부미용</div>
+    <div class="cover-title">본인이 사용하는 화장품 및<br>관리 방법</div>
+    <div class="cover-subtitle">나의 피부 유형에 맞는 보습 루틴과 제품 사용 경험</div>
+    <div class="cover-line"></div>
+    <div class="cover-meta">
+      <span>뷰티아트산업학과</span>
+      <span>이현주</span>
+      <span>2026년 6월</span>
+    </div>
+  </div>
+
+  <!-- 이미지 자리 -->
+  <div class="cover-img-area">
+    <div class="img-hint" style="height:100%; border-radius:8px; border:1px dashed #c9b8d4; background:#faf8f5;">
+      <svg width="28" height="28" fill="none" stroke="#c9b8d4" stroke-width="1.5" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+        <path d="M21 15l-5-5L5 21"/>
+      </svg>
+      <span>스킨케어 제품 배치 사진<br>또는 피부관리 이미지</span>
+    </div>
+  </div>
+
+  <div class="slide-number">01 / 06</div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     슬라이드 2 : 나의 피부 상태
+══════════════════════════════════ -->
+<div class="slide" id="s2">
+  <div class="top-bar"></div>
+
+  <div class="body-header">
+    <div class="section-label">My Skin Condition</div>
+    <div class="body-title">나의 피부 상태</div>
+    <div class="title-underline"></div>
+  </div>
+
+  <div class="body-content">
+    <div class="text-col">
+
+      <div class="sub-title">피부 유형 : 건성 피부</div>
+      <div class="body-text">
+        나의 피부는 건성 피부로, 피지 분비가 적고 피부 장벽이 약한 편입니다. 계절이나 생활환경에 따라 피부 상태가 민감하게 반응하며, 특히 세안 후 보습을 적절히 해주지 않으면 피부가 빠르게 당기는 느낌이 납니다.
+      </div>
+
+      <div class="sub-title">주요 피부 고민</div>
+      <div class="body-text">
+        세안 후 피부 당김이 자주 느껴지며, 겉으로는 유분이 없어 보이지만 피부 속은 건조한 속건조 상태가 지속됩니다. 특히 실내 냉난방 환경에서 더 심해지는 경향이 있어 하루 중 수분감이 떨어지는 시간이 빠른 편입니다. 이러한 이유로 평소 수분 공급과 보습 관리에 관심을 두고 꾸준히 관리하고 있습니다.
+      </div>
+
+      <div class="sub-title">관리 방향</div>
+      <div class="body-text">
+        자극이 적고 보습력이 좋은 제품을 중심으로 스킨케어 루틴을 구성하고 있으며, 피부 장벽을 강화하면서 하루 종일 수분감을 유지하는 것을 목표로 관리하고 있습니다.
+      </div>
+
+    </div>
+
+    <div class="img-col">
+      <div class="img-hint" style="flex:1;">
+        <svg width="24" height="24" fill="none" stroke="#c9b8d4" stroke-width="1.5" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+          <path d="M21 15l-5-5L5 21"/>
+        </svg>
+        <span>건성 피부 특성 설명<br>일러스트 또는<br>피부 수분 관련 이미지</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="keyword-bar">
+    <div class="keyword-bar-label">Key</div>
+    <div class="dot-divider"></div>
+    <div class="keyword">건성 피부</div>
+    <div class="keyword">속건조</div>
+    <div class="keyword">피부 당김</div>
+    <div class="keyword">수분 공급</div>
+    <div class="keyword">보습 관리</div>
+    <div class="keyword">피부 장벽</div>
+  </div>
+
+  <div class="slide-number">02 / 06</div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     슬라이드 3 : 현재 사용 중인 화장품
+══════════════════════════════════ -->
+<div class="slide" id="s3">
+  <div class="top-bar"></div>
+
+  <div class="body-header">
+    <div class="section-label">Products I Use</div>
+    <div class="body-title">현재 사용 중인 화장품</div>
+    <div class="title-underline"></div>
+  </div>
+
+  <div class="body-content">
+    <div class="text-col">
+
+      <div class="sub-title">① 디마프 히어로 마이 퍼스트 세럼</div>
+      <div class="body-text">
+        가장 먼저 사용하게 된 제품으로, 건성 피부의 수분 보충을 목적으로 도입하였습니다. 세럼 타입으로 피부에 가볍게 흡수되는 것이 특징입니다. 주요 성분으로는 수분을 끌어당겨 피부 표면에 수분막을 형성하는 히알루론산, 피부 보습과 장벽 기능을 돕는 판테놀, 피부의 수분 손실을 억제하고 보습 유지에 도움을 주는 세라마이드, 피부를 부드럽게 가꾸는 호호바씨오일과 마카다미아씨오일이 포함되어 있습니다. 건성 피부에서 부족하기 쉬운 수분 인자와 지질 성분을 함께 보완할 수 있다는 점에서 선택하게 되었습니다.
+      </div>
+
+      <div class="sub-title">② 보습 크림</div>
+      <div class="body-text">
+        세럼 사용 후 마지막 단계에서 수분이 날아가지 않도록 밀봉하는 역할로 사용하고 있습니다. 피부에 수분을 잡아두는 효과를 위해 꾸준히 활용 중입니다.
+      </div>
+
+    </div>
+
+    <div class="img-col">
+      <div class="img-hint" style="flex:1;">
+        <svg width="24" height="24" fill="none" stroke="#c9b8d4" stroke-width="1.5" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+          <path d="M21 15l-5-5L5 21"/>
+        </svg>
+        <span>디마프 세럼 제품 사진<br>또는 스킨케어 제품<br>플랫레이 이미지</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="keyword-bar">
+    <div class="keyword-bar-label">Key</div>
+    <div class="dot-divider"></div>
+    <div class="keyword">히알루론산</div>
+    <div class="keyword">판테놀</div>
+    <div class="keyword">세라마이드</div>
+    <div class="keyword">호호바씨오일</div>
+    <div class="keyword">마카다미아씨오일</div>
+    <div class="keyword">보습 크림</div>
+  </div>
+
+  <div class="slide-number">03 / 06</div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     슬라이드 4 : 화장품 사용 방법
+══════════════════════════════════ -->
+<div class="slide" id="s4">
+  <div class="top-bar"></div>
+
+  <div class="body-header">
+    <div class="section-label">How I Use It</div>
+    <div class="body-title">화장품 사용 방법</div>
+    <div class="title-underline"></div>
+  </div>
+
+  <div class="body-content">
+    <div class="text-col">
+
+      <div class="sub-title">Step 1 · 세럼 기본 사용</div>
+      <div class="body-text">
+        세안 후 피부를 가볍게 정리한 다음, 디마프 히어로 마이 퍼스트 세럼을 손에 덜어 얼굴 전체에 고루 펴 발라줍니다. 적당량을 사용하여 피부에 스며들도록 가볍게 눌러 흡수시키는 방식으로 적용합니다.
+      </div>
+
+      <div class="sub-title">Step 2 · 레이어링</div>
+      <div class="body-text">
+        피부 상태에 따라 같은 세럼을 2~3회 반복해서 겹쳐 바르는 레이어링 방법을 활용하고 있습니다. 피부가 특히 건조하다고 느껴지는 날에는 레이어링 횟수를 늘려 수분감을 보충하며, 각 레이어가 충분히 흡수된 후 다음 단계로 넘어갑니다.
+      </div>
+
+      <div class="sub-title">Step 3 · 보습 크림 혼합 사용</div>
+      <div class="body-text">
+        현재 사용 중인 보습 크림은 제형이 다소 뻑뻑한 편이어서 단독으로 사용하면 발림성이 떨어지는 불편함이 있었습니다. 이를 보완하기 위해 보습 크림에 디마프 히어로 마이 퍼스트 세럼을 소량 혼합하여 사용합니다. 두 제품을 함께 사용하면 크림의 제형이 부드러워지고 피부에 흡수가 더 자연스럽게 이루어지는 것을 느꼈습니다.
+      </div>
+
+    </div>
+
+    <div class="img-col">
+      <div class="img-hint" style="flex:1; min-height:120px;">
+        <svg width="24" height="24" fill="none" stroke="#c9b8d4" stroke-width="1.5" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+          <path d="M21 15l-5-5L5 21"/>
+        </svg>
+        <span>스킨케어 루틴<br>적용 장면 이미지<br>(세럼 바르는 모습 등)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="keyword-bar">
+    <div class="keyword-bar-label">Key</div>
+    <div class="dot-divider"></div>
+    <div class="keyword">세안 후 사용</div>
+    <div class="keyword">레이어링</div>
+    <div class="keyword">2~3회 중첩</div>
+    <div class="keyword">크림 혼합</div>
+    <div class="keyword">발림성 개선</div>
+    <div class="keyword">흡수력</div>
+  </div>
+
+  <div class="slide-number">04 / 06</div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     슬라이드 5 : 사용 후 느낀 변화
+══════════════════════════════════ -->
+<div class="slide" id="s5">
+  <div class="top-bar"></div>
+
+  <div class="body-header">
+    <div class="section-label">Changes I Noticed</div>
+    <div class="body-title">사용 후 느낀 변화</div>
+    <div class="title-underline"></div>
+  </div>
+
+  <div class="body-content">
+    <div class="text-col">
+
+      <div class="sub-title">피부 당김 감소</div>
+      <div class="body-text">
+        세안 후 느껴지던 피부 당김이 줄어들었습니다. 이전에는 세안 직후부터 피부가 팽팽하게 당기는 느낌이 강했는데, 현재 루틴을 꾸준히 실천하면서 그 불편함이 많이 완화되었습니다.
+      </div>
+
+      <div class="sub-title">피부 촉촉함 증가 및 결 개선</div>
+      <div class="body-text">
+        하루 중 피부가 건조해지는 시간이 눈에 띄게 늦어졌습니다. 예전에는 오전 중반부터 피부가 당기고 건조해지는 느낌이 있었는데, 수분감이 지속되는 시간이 더 길어진 것을 느꼈습니다. 또한 피부 결이 전보다 고르게 정돈된 느낌이 들며, 화장이 얼굴에 자연스럽게 밀착되는 것도 개선된 부분 중 하나입니다.
+      </div>
+
+      <div class="sub-title">피부의 전반적인 편안함</div>
+      <div class="body-text">
+        자극이 적고 가벼운 세럼을 중심으로 루틴을 구성한 덕분에, 예민해지거나 트러블이 생기는 일 없이 피부가 전반적으로 이전보다 편안하게 느껴집니다. 특히 세럼과 크림을 혼합하여 사용하는 방식이 피부에 무리를 주지 않으면서도 보습 효과를 높이는 데 도움이 된다고 느끼고 있습니다.
+      </div>
+
+    </div>
+
+    <div class="img-col">
+      <div class="img-hint" style="flex:1; min-height:120px;">
+        <svg width="24" height="24" fill="none" stroke="#c9b8d4" stroke-width="1.5" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+          <path d="M21 15l-5-5L5 21"/>
+        </svg>
+        <span>건강한 피부결 이미지<br>또는 스킨케어 전후<br>비교 느낌의 이미지</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="keyword-bar">
+    <div class="keyword-bar-label">Key</div>
+    <div class="dot-divider"></div>
+    <div class="keyword">당김 완화</div>
+    <div class="keyword">수분 지속</div>
+    <div class="keyword">피부결 개선</div>
+    <div class="keyword">편안한 피부</div>
+    <div class="keyword">보습 효과</div>
+  </div>
+
+  <div class="slide-number">05 / 06</div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     슬라이드 6 : 결론 + 참고문헌
+══════════════════════════════════ -->
+<div class="slide" id="s6">
+  <div class="top-bar"></div>
+
+  <div class="body-header">
+    <div class="section-label">Conclusion &amp; References</div>
+    <div class="body-title">결론 및 참고문헌</div>
+    <div class="title-underline"></div>
+  </div>
+
+  <div class="two-col">
+    <div class="conclusion-col">
+      <div class="sub-title">결론</div>
+      <div class="body-text">
+        건성 피부의 가장 핵심적인 관리 과제는 충분한 수분 공급과 피부 장벽 유지입니다. 이번 루틴을 실천하면서 히알루론산, 판테놀, 세라마이드와 같이 피부 보습에 직접적으로 관여하는 성분을 중심으로 제품을 선택하는 것이 건성 피부 관리에 실질적으로 도움이 된다는 것을 경험할 수 있었습니다.
+      </div>
+      <div class="body-text">
+        또한 제형이 뻑뻑한 크림을 세럼과 혼합하여 사용하는 방식은 제품의 발림성을 높이고 흡수를 도울 수 있었습니다. 앞으로도 피부 상태에 맞는 성분과 사용 방법을 꾸준히 연구하고 실천함으로써 피부 건강을 유지해 나가고자 합니다.
+      </div>
+      <div class="keyword-wrap">
+        <div class="keyword">보습 루틴</div>
+        <div class="keyword">피부 장벽</div>
+        <div class="keyword">성분 중심 스킨케어</div>
+        <div class="keyword">건성 피부 관리</div>
+      </div>
+    </div>
+
+    <div class="ref-col">
+      <div class="ref-title">References</div>
+
+      <div class="ref-item">
+        디마프(D'MARFI) 공식 홈페이지. 히어로 마이 퍼스트 세럼 제품 정보. (www.dmarfi.com)
+      </div>
+      <div class="ref-item">
+        네이버 지식백과. 「건성 피부」. 피부 유형 및 특성 관련 항목. 서울대학교병원 의학정보.
+      </div>
+      <div class="ref-item">
+        대한피부과학회. 피부 건강 정보 — 피부 건조증과 보습 관리. (www.derma.or.kr)
+      </div>
+      <div class="ref-item">
+        피부미용학 수업 교재 참고 (수업 중 배부된 강의자료 기반).
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-number">06 / 06</div>
+</div>
+
+<div class="print-note">
+  ※ 이미지 힌트 영역(점선 박스)에 직접 사진을 삽입한 뒤 PPT 프로그램(PowerPoint / Keynote / Google Slides)으로 옮겨 사용하세요.
+</div>
+
+</body>
+</html>
